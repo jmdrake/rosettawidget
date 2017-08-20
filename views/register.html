@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A Jam Music Center</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/ajam.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <div id="navbar"></div>
+    <br><br><br><br><br><br><br><br><br>
+    <!-- Page content -->
+    <form class="w3-container w3-center" style="max-width: 500px; margin: auto" id="frmRegister" id="frmRegister">
+        <p>
+          <label class="w3-left">Full name</label>
+          <input class="w3-input w3-border" width="40" type="text" id="fullname" name="fullname">
+        </p>
+        <p>
+          <label class="w3-left">Username</label>
+          <input class="w3-input w3-border" width="40" type="text" id="username" name="username">
+        </p>
+        <p>
+            <label class="w3-left">Email</label>
+            <input class="w3-input w3-border" width="40" type="text" id="email" name="email">
+        </p>
+        <p>
+            <label class="w3-left">Password</label>
+            <input class="w3-input w3-border" width="40" type="password" id="password" name="password">
+        </p>
+        <p>
+            <label class="w3-left">Confirm Password</label>
+            <input class="w3-input w3-border" width="40" type="password">
+        </p>
+        <p>
+            <label class="w3-left">Phone</label>
+            <input class="w3-input w3-border" width="40" type="phone" id="phone" name="phone">
+        </p>        
+        <p>      
+            <button type="button" class="w3-btn w3-padding w3-teal w3-left" style="width:120px" onclick="btnRegister();">Register &nbsp; ❯</button>
+        </p>
+        
+    </form>
+    <hr>
+    <!-- Footer -->
+    <div id="footer"></div>
+    <script src="../js/clearform.js"></script>
+    <script src="../js/inputs2json.js"></script>
+    <script src="../ctrls/users.js"></script>
+    <script src="register.js"></script>
+  </body>
+</html>

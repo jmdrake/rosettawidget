@@ -1,0 +1,25 @@
+@font-face {
+  font-family: Aileron-Black;
+  src: url('../fonts/Aileron-Black.otf');
+}
+@font-face {
+  font-family: Aileron-Thin;
+  src: url('../fonts/Aileron-Thin.otf');
+}
+body {font-family: Aileron-Black, sans-serif}
+.mySlides {display: none}
+body {
+font-size: 100%;
+line-height: 1.6875;
+font-family: Aileron-Thin;
+}
+.maincategory{
+  font-family: Aileron-Semibold;
+  
+}
+.productinfo{
+  font-family: Aileron-Regular;
+}
+button{
+  font-family: Aileron-Heavy;
+}

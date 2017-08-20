@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A Jam Music Center</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//cdn.jsdelivr.net/pouchdb/6.2.0/pouchdb.min.js"></script>
+    <link rel="stylesheet" href="../css/ajam.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+    <script src="subcategory.js"></script>
+    <script src="../js/json2div.js"></script>
+    <script src="../js/pouchdb.find.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Navbar -->
+    <div id="navbar"></div><br/><br/><br/><br/><br/><br/>
+  
+    <!-- Page content -->
+    <div class="w3-content">
+      <h1 id="subcategory"></h1>
+      <div class="w3-row" id="items">
+        <div class="w3-quarter" id="tmplProduct" style="display:none">
+          <div class="entity-product-image-wrap grid-item-image-wrap">
+            <a href="#" id="lnkItemPicture">
+              <img id="imgProduct" src="../images/noimage.jpg" class="img-thumbnail img-responsive entity-product-image grid-item-image" height="150">
+            </a>
+          </div>
+          <div class="entity-product-name-wrap grid-item-name-wrap productinfo">
+            <a href="#" id="lnkItemName">
+              <div><span id="Mfg"></span>&nbsp;<span id="Sku"></span></div>
+              <div id="Desc">description</div>
+            </a>
+          </div>
+          <div class="productinfo">
+            <div>Rental Rate:</div>
+            <div><span id="WeeklyRental"></span>/Week <span id="MonthlyRental"></span>/Month</div>
+            <p></p>
+          </div>
+         </div>
+      </div>
+    </div>
+
+    <hr>
+    <!-- Footer -->
+    <script src="../ctrls/inventory.js"></script>
+    <div id="footer"></div>
+</body>
+</html>

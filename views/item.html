@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jam Music Center</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//cdn.jsdelivr.net/pouchdb/6.2.0/pouchdb.min.js"></script>
+    <link rel="stylesheet" href="../css/ajam.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="navbar.js"></script>
+    <script src="footer.js"></script>
+    <script src="item.js"></script>
+    <script src="../js/json2div.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Navbar --> 
+    <div id="navbar"></div><br/><br/><br/><br/><br/><br/><br/><br/>
+  
+    <!-- Page content -->
+    <div class="w3-content" id="divProduct">
+      <div class="w3-row productinfo" id="divProductHeader">
+        <p><h3><span id="Mfg"></span>&nbsp;<span id="Sku"></span></h3></p>
+        <p><span id="Description"></span></p>
+        <p><span id="LongDescription"></span></p>
+        <p><span id="WeeklyRental"></span>/Week <span id="MonthlyRental"></span>/Month</p>
+      </div><i class="fa fa-pencil"></i>
+      <div class="w3-row">
+        <div class="w3-col m5 l5" id="divProductImage">
+          <img src="../images/noimage.jpg" id="Image"><img>
+        </div>
+        <div class="w3-col m5 l5" id="divProductInfo" class="w3-blue">
+          <div class="w3-row w3-blue">
+            <div class="w3-bar">
+              <button class="w3-bar-item w3-button" onclick="$('.infomenu').hide(); $('#divFeatures').show();">Features</button>
+            </div>
+            <div id="divFeatures" class="infomenu">
+              <h3>Features</h3>
+              <ul id="FeatureList">
+              </ul>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div>
+
+    <hr>
+    <!-- Footer -->
+    <script src="../ctrls/inventory.js"></script>
+    <div id="footer"></div>
+</body>
+</html>
