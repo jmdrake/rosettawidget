@@ -19,7 +19,7 @@ function set_currentuser($userid){
 }
 
 function get_currentuser(){	
-    return $_SESSION["currentuser"];
+  return $_SESSION["currentuser"];
 }
 
 ?>

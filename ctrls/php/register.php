@@ -7,47 +7,26 @@
 
 require_once "../php/config.php";
 require_once "../php/mark_sql_post.php";
+require_once "../php/querytojson.php";
+
 $conn = open_connection();
 
-$sql = mark_sql_post("INSERT INTO Users(fullname, username, email, password, phone) VALUES([fullname], [username], [email], [password], [phone])", $conn);
+$sql = mark_sql_post("SELECT username, email FROM users");
 
-$conn->close();
-?>
+$results = querytojson($sql);
 
-<?php
-/*
-     * File : register.php
-     * Input type: POST
-     * Inputs: text, touser
-     * Outputs: Returns status of insertion or error information
-     */
+if($results==="[]") {
+  $sql = mark_sql_post("INSERT INTO users(fullname, username, email, password, phone) VALUES([fullname], [username], [email], [password], [phone])", $conn);
 
-require "../php/config.php";
-require "../php/mark_sql_post.php";
-require "../php/querytojson.php";
-$conn = open_connection();
-
-$sql = mark_sql_post("INSERT INTO Messages(text, fromuser, touser, timestamp) VALUES([text], [currentuser], [touser], Now())");
-
-if ($conn->query($sql) === TRUE) {
-    $time = date("Y-m-d H:i:s", time());
-    $sql = mark_sql_post("SELECT username FROM Users WHERE id=[currentuser]");
-    $fromuserdata = json_decode(querytojson($sql, $conn));
-
-    $sql = mark_sql_post("SELECT email FROM Users WHERE id=[touser]");
-    $touserdata = json_decode(querytojson($sql, $conn));
-    
-    $message = "You received a message from " . $fromuserdata[0]->{"username"} . " on Datenight1on1.com.  Login to read your message.";
-    $subject = "You have mail at Datenight1on1.com";
-    $email = $touserdata[0]->{'email'};
-    if(mail($email, $subject, $message)) {        
-        echo $time;
-    } else {
-        echo "Message not sent : " . $email . " : " . $subject . " : " . $message;
-    }
-    
+  if($conn->query($sql)===TRUE) {
+    echo "ok"
+  } else {
+    echo "Error : SQL error inserting new user"
+  }  
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+  echo "Error : Duplicate username or email address"
 }
+
 $conn->close();
 ?>
+

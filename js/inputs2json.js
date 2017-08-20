@@ -1,3 +1,7 @@
+function strescape(s) {
+    return s.replace(/'/g, "%27").replace(/"/g, "%22").replace(/\n/g, "%0A")
+}
+
 function inputs2json(form){
    // console.log($(formname));
     var inputfields = form.find("input");
