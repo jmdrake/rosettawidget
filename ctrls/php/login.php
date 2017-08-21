@@ -21,7 +21,7 @@ if($result) {
     if($currentuser != "") {
         set_currentuser($currentuser, $role);
     } else {
-        echo "Error : username/email - password combination not found";
+        echo "Error : username/email - password combination not found. " . $sql;
     }      
 } else {
     echo("Error : Unable to fetch login record");
