@@ -14,7 +14,7 @@ $conn = open_connection();
 $sql = mark_sql_get('
 SELECT id, Model, Sku, Mfg, Qty, Cost, Retail, Ourprice WeeklyRental, Category, Image, Features, Description, LongDescription, MonthlyRental
 FROM inventory
-WHERE Mfg=[mfg] AND Sku=[sku]');
+WHERE id=[id]');
 // echo $sql;
 echo querytojson($sql, $conn);
 $conn->close();
