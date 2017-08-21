@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    if ((match = location.href.match(/\?item=(\w*)/)) != null) {
+    if ((match = location.href.match(/\?id=(\w*)/)) != null) {
         var itemname = decodeURI(location.href.split("=")[1]);
         getItem(itemname, function (doc) {
             var newdoc = doc;
