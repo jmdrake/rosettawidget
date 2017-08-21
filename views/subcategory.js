@@ -8,7 +8,7 @@ $(document).ready(function () {
         getCategoryItems(subcategoryname, function(items){
             for(var item in items){
                 items[item]["imgProduct"] = items[item]["Image"];
-                addItem(items[item], "./images/inventory/");
+                addItem(items[item], "../images/inventory/");
             }
         });
     } 
