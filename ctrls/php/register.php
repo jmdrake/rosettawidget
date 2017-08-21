@@ -5,9 +5,9 @@
  * Outputs: Returns status of insertion or error information
  */
 
-require_once "../php/config.php";
-require_once "../php/mark_sql_post.php";
-require_once "../php/querytojson.php";
+require_once "utils/config.php";
+require_once "utils/mark_sql_post.php";
+require_once "utils/querytojson.php";
 
 $conn = open_connection();
 
