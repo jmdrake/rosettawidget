@@ -13,18 +13,18 @@ $conn = open_connection();
 
 $sql = mark_sql_post("SELECT username, email FROM users");
 
-$results = querytojson($sql);
+$results = querytojson($sql, $conn);
 
 if($results==="[]") {
   $sql = mark_sql_post("INSERT INTO users(fullname, username, email, password, phone) VALUES([fullname], [username], [email], [password], [phone])", $conn);
 
   if($conn->query($sql)===TRUE) {
-    echo "ok"
+    echo "ok";
   } else {
-    echo "Error : SQL error inserting new user"
+    echo "Error : SQL error inserting new user";
   }  
 } else {
-  echo "Error : Duplicate username or email address"
+  echo "Error : Duplicate username or email address";
 }
 
 $conn->close();
