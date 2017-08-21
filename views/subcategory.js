@@ -17,8 +17,8 @@ $(document).ready(function () {
 function addItem(item, url) {
     var newDiv = $("#tmplProduct").clone();
     var product = item;
-    product["lnkItemPicture"] = "item.html?item=" + product["_id"];
-    product["lnkItemName"] = "item.html?item=" + product["_id"];
+    product["lnkItemPicture"] = "item.html?item=" + product["id"];
+    product["lnkItemName"] = "item.html?item=" + product["id"];
     json2div(newDiv, product, url);
     newDiv.show();
     $("#items").append(newDiv);    
