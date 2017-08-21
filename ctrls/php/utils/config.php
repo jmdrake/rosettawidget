@@ -1,5 +1,5 @@
 <?php
-require "config_x10.php";
+require "config_openshift.php";
 /*
     $servername = getenv('IP');
     $username = getenv('C9_USER');

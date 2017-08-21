@@ -3,7 +3,7 @@ function btnRegister(){
   register(userinfo, function(results){
     if(results=="ok") {
       clearform($("#frmRegister"));
-      window.location = "views/index.html";
+      window.location = "index.html";
     } else {
       console.log(results);
       alert(results);
