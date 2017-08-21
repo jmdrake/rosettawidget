@@ -11,7 +11,7 @@ require_once "utils/config.php";
 require_once "utils/mark_sql_post.php";
 
 $conn = open_connection();
-$sql = mark_sql_post("SELECT id, email, password, role FROM Users WHERE (username=[userinfo] OR email=[userinfo]) AND password=[password]");
+$sql = mark_sql_post("SELECT id, email, password, role FROM users WHERE (username=[userinfo] OR email=[userinfo]) AND password=[password]");
 // echo $sql;
 $result = $conn->query($sql);
 if($result) {
