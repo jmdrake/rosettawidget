@@ -12,7 +12,7 @@ require_once "utils/mark_sql_get.php";
 
 $conn = open_connection();
 $sql = mark_sql_get('
-SELECT id, Model, Sku, Mfg, Qty, Cost, Retail, Ourprice WeeklyRental, Category, Image, Features, Description, LongDescription, MonthlyRental
+SELECT id, Model, Sku, Mfg, Qty, Cost, Retail, Ourprice, WeeklyRental, Category, Image, Features, Description, LongDescription, MonthlyRental
 FROM inventory
 WHERE Category=[category]');
 // echo $sql;
