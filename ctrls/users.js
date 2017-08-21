@@ -1,5 +1,5 @@
 function register(userinfo, callback){
-  $.post("../ctrls/php/register.php", userinfouserinfo, function (results) {        
+  $.post("../ctrls/php/register.php", userinfo, function (results) {        
     callback (results);
   })
 }
