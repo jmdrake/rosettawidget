@@ -4,8 +4,8 @@ function getCategoryItems(category, callback){
     })
 }
 
-function getItem(item, callback){
-    $.get("../ctrls/php/getItem.php?item=" + item, function (results) {        
+function getItem(id, callback){
+    $.get("../ctrls/php/getItem.php?id=" + id, function (results) {        
         callback (JSON.parse(results));
     })
 }
