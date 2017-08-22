@@ -19,7 +19,8 @@ if($result) {
     $currentuser = $rs["id"];
     $role = $rs["role"];
     if($currentuser != "") {
-        set_currentuser($currentuser, $role);
+        set_currentuser($currentuser);
+        echo $currentuser;
     } else {
         echo "Error : username/email - password combination not found. " . $sql;
     }      
