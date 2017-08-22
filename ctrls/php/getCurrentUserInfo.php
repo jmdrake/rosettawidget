@@ -18,5 +18,6 @@ INNER JOIN roles ON role = roles.id
 WHERE users.id = [currentuser]');
 echo querytojson($sql, $conn);
 echo $sql;
+echo "Fubar";
 $conn->close();
 ?>
