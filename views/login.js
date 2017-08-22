@@ -4,6 +4,7 @@ function btnLogin() {
 		    window.location = "index.html";
 		} else {
 			alert(results);
+      console.log(results);
 		}
 	})
 }

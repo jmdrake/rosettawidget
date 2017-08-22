@@ -16,8 +16,8 @@ function logout(callback) {
   })
 }
 
-function currentuserinfo(callback) {
-  $.get ("../ctrls/php/currentuserinfo.php", function(results) {
-    callback (results);
+function getCurrentUserInfo(callback) {
+  $.get ("../ctrls/php/getCurrentUserInfo.php", function(results) {
+    callback (JSON.parse(results)[0]);
   })  
 }
