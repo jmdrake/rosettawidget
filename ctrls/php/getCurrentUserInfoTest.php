@@ -17,6 +17,5 @@ FROM users
 INNER JOIN roles ON role = roles.id
 WHERE users.id = [currentuser]');
 echo querytojson($sql, $conn);
-echo $sql;
 $conn->close();
 ?>
