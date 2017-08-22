@@ -19,7 +19,7 @@ $(document).ready(function(){
     addCategory("#menucolum4", categories[8]);
     
     getCurrentUserInfo(function(userinfo){
-      if(userinfo!=[]){
+      if(userinfo){
         $("#fullname").html(userinfo["fullname"]);
         $("#fullname").removeClass("w3-hide");
         var menuitems = JSON.parse(userinfo["menu"]);
