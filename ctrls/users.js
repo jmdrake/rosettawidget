@@ -18,6 +18,6 @@ function logout(callback) {
 
 function getCurrentUserInfo(callback) {
   $.get ("../ctrls/php/getCurrentUserInfo.php", function(results) {
-    callback (JSON.parse(results)[0]);
+    callback (JSON.parse(results.trim())[0]);
   })  
 }

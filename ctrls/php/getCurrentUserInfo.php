@@ -12,12 +12,12 @@ require_once "utils/mark_sql_get.php";
 
 $conn = open_connection();
 $sql = mark_sql_get('
-SELECT fullname, phone, email, menu, permissions
+SELECT fullname, phone, email, role, menu
 FROM users
-INNER JOIN roles ON role = roles.id
+INNER JOIN roles ON roleid = roles.id
 WHERE users.id = [currentuser]');
 echo querytojson($sql, $conn);
-echo $sql;
-echo "Fubar";
+// echo $sql;
+// echo "Fubar";
 $conn->close();
 ?>

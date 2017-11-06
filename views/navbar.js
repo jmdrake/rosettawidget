@@ -1,3 +1,5 @@
+var role="";
+
 $(document).ready(function(){
   $("#navbar").load("navbar.html", function(){
     $("#menucolum1").html("");
@@ -20,22 +22,22 @@ $(document).ready(function(){
     
     getCurrentUserInfo(function(userinfo){
       if(userinfo){
-        $("#fullname").html(userinfo["fullname"]);
+        $("#fullname").html(decodeURI(userinfo["fullname"]));
         $("#fullname").removeClass("w3-hide");
-        var menuitems = JSON.parse(userinfo["menu"]);
-        $("#usermenu").html("");
-        for(item in menuitems) {
-          if(menuitems[item]["link"]){
-            var listitem = "<a href='" + menuitems[item]["link"] + "'>" + menuitems[item]["name"] + "</a>";
-          } else {
-            var listitem = "<a href='#' onclick='" + menuitems[item]["action"] + "'>" + menuitems[item]["name"] + "</a>";
-          }
-          $("#usermenu").append(listitem);
-        }
+        $("#usermenu").html(userinfo["menu"]);
+        role = userinfo["role"];
       }
     });
   }); 
 });
+
+function btnLogout() {
+  logout(function(results){
+    window.location = "index.html";
+    ("#fullname").addClass("w3-hide");
+    $("#usermenu").html('<a href="./login.html">Login</a><a href="./register.html">Register</a>');
+  });
+}
 
 var categories = [{"category" : "Guitars", "subcategories" : ["Acoustic Guitars", "Electric Guitars", "Basses", "Other Fretted Instruments"]},
                   {"category" : "Keys & Synths", "subcategories" : ["Pianos", "Synthesizers", "Organs & Leslies"]},

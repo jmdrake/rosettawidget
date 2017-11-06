@@ -11,7 +11,21 @@ $(document).ready(function () {
             for(var feature in features) {
                 $("#FeatureList").append("<li>" + features[feature] + "</li>");
             }
-        });
+        });      
+      getCurrentUserInfo(function(userinfo){
+        if(userinfo){
+          $("#fullname").html(decodeURI(userinfo["fullname"]));
+          $("#fullname").removeClass("w3-hide");
+          $("#usermenu").html(userinfo["menu"]);
+          var role = userinfo["role"];
+          if(role=="user" || role=="admin") {
+            $("#reserve").removeClass("w3-hide");
+          }
+          if(role=="admin") {
+            $("#edit").removeClass("w3-hide");
+          }
+        }
+      });
     } 
 });
 

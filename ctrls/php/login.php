@@ -11,21 +11,21 @@ require_once "utils/config.php";
 require_once "utils/mark_sql_post.php";
 
 $conn = open_connection();
-$sql = mark_sql_post("SELECT id, email, password, role FROM users WHERE (username=[userinfo] OR email=[userinfo]) AND password=[password]");
+$sql = mark_sql_post("SELECT id, email, password FROM users WHERE (username=[userinfo] OR email=[userinfo]) AND password=[password]");
 // echo $sql;
 $result = $conn->query($sql);
 if($result) {
     $rs = $result->fetch_array(MYSQLI_ASSOC);
-    $currentuser = $rs["id"];
-    $role = $rs["role"];
-    if($currentuser != "") {
-        set_currentuser($currentuser);
-        echo $currentuser;
+    $jamuser = $rs["id"];    
+    if($jamuser != "") {
+        set_jamuser($jamuser);
+        echo "Current user: " . $jamuser . " : " . $_SESSION["jamuser"] . " : " . get_jamuser();
     } else {
         echo "Error : username/email - password combination not found. " . $sql;
     }      
 } else {
     echo("Error : Unable to fetch login record");
+    echo $sql;
 }
 $conn->close();
 ?>

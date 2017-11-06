@@ -1,5 +1,5 @@
 <?php
-require "config_openshift.php";
+require "config_x10.php";
 /*
     $servername = getenv('IP');
     $username = getenv('C9_USER');
@@ -8,18 +8,20 @@ require "config_openshift.php";
     $dbport = 3306;
 */
 
+session_start();
+
 function open_connection() {
 	$conn = new mysqli($GLOBALS['servername'], $GLOBALS['username'], $GLOBALS['password'], $GLOBALS['database']);   
    return $conn;
 }
 
-function set_currentuser($userid){
-	global $currentuser;
-	$_SESSION["currentuser"] = $userid;
+function set_jamuser($userid){	
+	$_SESSION["jamuser"] = $userid;
 }
 
-function get_currentuser(){	
-  return $_SESSION["currentuser"];
+function get_jamuser(){	
+  return $_SESSION["jamuser"];
+  // return "What the fuck?";
 }
 
 ?>

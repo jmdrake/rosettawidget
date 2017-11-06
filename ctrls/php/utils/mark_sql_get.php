@@ -19,7 +19,7 @@ function mark_sql_get($sql) {
         $patterns[$i] = "/\\" . $params[0][$i] . "/";
 
         if($params[1][$i] == "currentuser")
-            $getval = get_current_user();
+            $getval = get_jamuser();
         else
             $getval = rawurlencode($_GET[$params[1][$i]]);
                 

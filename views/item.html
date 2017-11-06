@@ -10,6 +10,7 @@
     <script src="//cdn.jsdelivr.net/pouchdb/6.2.0/pouchdb.min.js"></script>
     <link rel="stylesheet" href="../css/ajam.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="../ctrls/users.js"></script>
     <script src="navbar.js"></script>
     <script src="footer.js"></script>
     <script src="item.js"></script>
@@ -23,12 +24,13 @@
   
     <!-- Page content -->
     <div class="w3-content" id="divProduct">
+      <i class="fa fa-pencil w3-hide" id="edit"></i>
       <div class="w3-row productinfo" id="divProductHeader">
         <p><h3><span id="Mfg"></span>&nbsp;<span id="Sku"></span></h3></p>
         <p><span id="Description"></span></p>
         <p><span id="LongDescription"></span></p>
         <p><span id="WeeklyRental"></span>/Week <span id="MonthlyRental"></span>/Month</p>
-      </div><i class="fa fa-pencil"></i>
+      </div><button class="w3-hide w3-button w3-white w3-border w3-border-blue" id="reserve">Reserve</button>
       <div class="w3-row">
         <div class="w3-col m5 l5" id="divProductImage">
           <img src="../images/noimage.jpg" id="Image"><img>

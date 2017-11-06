@@ -17,7 +17,7 @@ function mark_sql_post($sql) {
         $patterns[$i] = "/\\" . $params[0][$i] . "/";
 
         if($params[1][$i] == "currentuser")
-            $getval = get_current_user();
+            $getval = get_jamuser();
         else
             $postval = rawurlencode($_POST[$params[1][$i]]);
 
