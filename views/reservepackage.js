@@ -4,4 +4,5 @@ $(document).ready(function () {
 		getCurrentUserInfo(function(userinfo){
 			console.log(JSON.stringify(userinfo));
     }); 
+	}
 });
