@@ -1,0 +1,1 @@
+mysql --host d6q8diwwdmy5c9k9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com --user a2yddmozk0z2ru2a --password=juijast2as9e6me2
