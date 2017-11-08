@@ -1,5 +1,7 @@
 <?php
-require "config_x10.php";
+$currentconfig = file_get_contents('configure.inc');                
+require $currentconfig;
+
 /*
     $servername = getenv('IP');
     $username = getenv('C9_USER');
