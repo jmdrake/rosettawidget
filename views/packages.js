@@ -5,9 +5,5 @@ $(document).ready(function(){
       } else {
         $(this).parent().parent().find(".w3-white").css("height", "500px")
       }        
-    });
-  
-    $(".rightbutton").click(function(){
-        alert("Make Reservation")
-    });  
+    });      
 });

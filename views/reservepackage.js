@@ -3,6 +3,7 @@ $(document).ready(function () {
 		console.log(match);
 		getCurrentUserInfo(function(userinfo){
 			console.log(JSON.stringify(userinfo));
+			json2div($("#frmReserve"), userinfo);
     }); 
 	}
 });
