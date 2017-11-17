@@ -1,13 +1,14 @@
 var slides = [
-	{"bannerimage" : "bannerdj.png", "title" : "DJ", "text" : "You need it?  We got it."},
-	{"bannerimage" : "bannerwedding.png", "title" : "Weddings", "text" : "We've got you covered."},
-	{"bannerimage" : "bannercorporatesound.png", "title" : "Corporate Meetings", "text" : "Professional Look and Sound"}			
+	{"bannerimage" : "bannerdj.png", "title" : "DJs", "text" : "You only sound as good as your equipment."},
+	{"bannerimage" : "bannerwedding.png", "title" : "Weddings", "text" : "We have everything you need for your special day."},
+	{"bannerimage" : "bannercorporatesound.png", "title" : "Corporate Meetings", "text" : "Make your best first impression."}			
 ];
 
 $(document).ready(function(){
-   $("#slideshow").load("slideshow.html", function(){
-		 // $("#slidelist").html("");
-		 populateDivList($("#slidelist"), slides, $("#tmplSlide"), {"path" : "../images/"});
+   $("#slideshow").load("slideshow.html", function(){		 
+		 var slidetemplate = cloneDiv($("#tmplSlide"));
+		 $("#slidelist").html("");
+		 populateDivList($("#slidelist"), slides, slidetemplate, {"path" : "../images/"});
 		 carousel();
 	 }); 
 });
