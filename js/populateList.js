@@ -1,18 +1,18 @@
-function cloneDiv(template, record, href){
+function cloneDiv(template, record, path){
     var newDiv = template.clone();
-    json2div(newDiv, record, href);
+    json2div(newDiv, record, path);
     return newDiv
 }
 
 function populateDivList(div, data, template, options){
 	if(options != undefined) {
 		var callback = options["callback"];
-		var href = options["href"];
+		var path = options["path"];
 		var prepend = options["prepend"];
 	}	    
    var newDiv;
    for (var i = 0; i < data.length; i++) {
-		newDiv = cloneDiv(template, data[i], href);
+		newDiv = cloneDiv(template, data[i], path);
 		if(prepend == undefined)
 			div.append(newDiv);
 		else 

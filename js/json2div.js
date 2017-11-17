@@ -1,4 +1,4 @@
-function json2div(div, record, href) {
+function json2div(div, record, path) {
     for(var key in record) {
         element = div.find("#" + key);
         var value = unescape(record[key]);                
@@ -16,7 +16,7 @@ function json2div(div, record, href) {
                         break;
                     case "IMG":
                         if(value != "")
-                            element.attr("src", href + record[key]);
+                            element.attr("src", path + record[key]);
                         break;
                     case "INPUT":
                     	  element.val(value);
