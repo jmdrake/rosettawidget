@@ -8,7 +8,7 @@ $(document).ready(function(){
    $("#slideshow").load("slideshow.html", function(){		 
 		 var slidetemplate = cloneDiv($("#tmplSlide"));
 		 $("#slidelist").html("");
-		 populateDivList($("#slidelist"), slides, slidetemplate, {"path" : "../images/"});
+		 populateDivList($("#slidelist"), slides, slidetemplate, {"imagepath" : "../images/"});
 		 carousel();
 	 }); 
 });

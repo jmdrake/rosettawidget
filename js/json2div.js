@@ -1,4 +1,8 @@
-function json2div(div, record, path) {
+function json2div(div, record, options) {
+	if(options != undefined) {
+	    var imagepath = options["imagepath"];
+		var linkpath = options["linkpath"];
+	}
     for(var key in record) {
         element = div.find("#" + key);
         var value = unescape(record[key]);                
@@ -16,13 +20,13 @@ function json2div(div, record, path) {
                         break;
                     case "IMG":
                         if(value != "")
-                            element.attr("src", path + record[key]);
+                            element.attr("src", imagepath + record[key]);
                         break;
                     case "INPUT":
                     	  element.val(value);
                     	  break;
                     case "A":
-                        element.attr("href", record[key]);
+                        element.attr("href", linkpath + record[key]);
                 }
     }    
 }

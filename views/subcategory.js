@@ -14,12 +14,12 @@ $(document).ready(function () {
     } 
 });
 
-function addItem(item, url) {
+function addItem(item, imagepath) {
     var newDiv = $("#tmplProduct").clone();
     var product = item;
     product["lnkItemPicture"] = "item.html?id=" + product["id"];
     product["lnkItemName"] = "item.html?id=" + product["id"];
-    json2div(newDiv, product, url);
+    json2div(newDiv, product, {"imagepath" : imagepath});
     newDiv.show();
     $("#items").append(newDiv);    
 }
