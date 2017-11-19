@@ -16,7 +16,6 @@ SELECT id, Model, Sku, Mfg, Qty, Cost, Retail, Ourprice, WeeklyRental, Category,
 FROM inventory
 WHERE Category=[category]');
 // echo $sql;
-// echo rawurlencode($_GET["category"]) . "<br/>" . $_GET["category"];
 echo querytojson($sql, $conn);
 $conn->close();
 ?>

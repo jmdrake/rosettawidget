@@ -1,6 +1,9 @@
 <?php
-$currentconfig = file_get_contents('configure.inc');                
+// $currentconfig = file_get_contents('configure.inc');                
+$foo=file_get_contents('configure.inc');      
+$currentconfig = "config_heroku.php";
 require $currentconfig;
+// require "config_heroku.php";
 
 /*
     $servername = getenv('IP');
@@ -22,8 +25,7 @@ function set_jamuser($userid){
 }
 
 function get_jamuser(){	
-  return $_SESSION["jamuser"];
-  // return "What the fuck?";
+  return $_SESSION["jamuser"];  
 }
 
 ?>
