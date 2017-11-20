@@ -13,7 +13,7 @@ $(document).ready(function () {
 	});
 	$("#saveedits").click(
 		function(){
-			var componetlist = $("#.component");
+			var componetlist = $(".component");
 			for(c in componentlist){
 				var doc = div2json(componetlist[c], slides[0]);
 				console.log(doc);
