@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/ajam.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="../ctrls/users.js"></script>
     <script src="navbar.js"></script>
     <script src="footer.js"></script>
-		<script src="editslides.js"></script>
+	<script src="../js/json2div.js"></script>
+	<script src="../js/populateList.js"></script>
+	<script src="editslides.js"></script>
   </head>
 
   <body>
@@ -20,8 +23,11 @@
     <div id="navbar"></div>
   
     <!-- Page content -->
-		<h1>Edit Slides</h1>
-    <div id="slides"></div>
+    <br><br><br><br><br><br><br>
+	<h1>Edit Slides</h1>
+    <button class="w3-btn">Add Slide</button>
+    <button class="w3-btn">Save Edits</button>
+    <div id="slideshow"></div>
 		
     <hr>
     <!-- Footer -->

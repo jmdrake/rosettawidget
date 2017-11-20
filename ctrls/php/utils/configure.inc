@@ -1,1 +1,1 @@
-config_heroku.php
+config_local.php
