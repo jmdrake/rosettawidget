@@ -18,7 +18,7 @@ function div2json(div, model, options) {
                     value = element.attr("href" );
                     break;
                 default:
-                    value = element.val();
+                    value = element.html();
             }                            
         object[key] = value;
     }

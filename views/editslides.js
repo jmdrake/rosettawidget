@@ -11,13 +11,22 @@ $(document).ready(function () {
 		populateDivList($("#slidelist"), slides, slidetemplate, { "imagepath": "../images/", "linkpath":"" });
 		$(".component").attr("contenteditable", true);
 	});
+	
 	$("#saveedits").click(
 		function(){
-			var componetlist = $(".component");
-			for(c in componentlist){
-				var doc = div2json(componetlist[c], slides[0]);
-				console.log(doc);
-			}
+			$(".component").each(function(){
+				doc = div2json($(this), slides[0]);
+				if(doc._id=="") {
+					doc._id=Date.now();
+					insertComponent(doc, function(res){
+						console.log(res);
+					});
+				} else {
+					updateComponent(doc, function(res){
+						console.log(res);
+					});					
+				}
+			});
 		});
 });
 

@@ -17,8 +17,8 @@ function getComponent(id, callback){
 }
 
 function insertComponent(doc, callback){
-    jwc.put(doc).then(function(newdoc){
-        callback(newdoc);
+    jwc.put(doc).then(function(result){
+        callback(result);
     })
 }
 
