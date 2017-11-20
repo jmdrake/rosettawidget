@@ -16,7 +16,7 @@ $(document).ready(function () {
 		function(){
 			$(".component").each(function(){
 				doc = div2json($(this), slides[0]);
-				if(doc._id=="") {
+				if(doc._id==undefined) {
 					doc._id=Date.now();
 					insertComponent(doc, function(res){
 						console.log(res);
