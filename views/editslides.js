@@ -6,11 +6,19 @@ var slides = [
 
 $(document).ready(function () {
 	$("#slideshow").load("components/slide.html", function () {
-	    var slidetemplate = cloneDiv($("#tmplSlide"));
-	    $("#slidelist").html("");
-	    populateDivList($("#slidelist"), slides, slidetemplate, { "imagepath": "../images/", "linkpath":"" });
-	    $(".component").attr("contenteditable", true);
+		var slidetemplate = cloneDiv($("#tmplSlide"));
+		$("#slidelist").html("");
+		populateDivList($("#slidelist"), slides, slidetemplate, { "imagepath": "../images/", "linkpath":"" });
+		$(".component").attr("contenteditable", true);
 	});
+	$("#saveedits").click(
+		function(){
+			var componetlist = $("#.component");
+			for(c in componentlist){
+				var doc = div2json(componetlist[c], slides[0]);
+				console.log(doc);
+			}
+		});
 });
 
 
