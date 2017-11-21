@@ -15,7 +15,7 @@ $(document).ready(function () {
 	$("#saveedits").click(
 		function(){
 			$(".component").each(function(){
-				doc = div2json($(this), slides[0]);
+				doc = div2json($(this), slidemodel);
 				if(doc._id==undefined) {
 					doc._id=Date.now().toString();
 					insertComponent(doc, function(res){

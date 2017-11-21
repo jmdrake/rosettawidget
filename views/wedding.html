@@ -12,6 +12,11 @@
     <script src="../ctrls/users.js"></script>
     <script src="navbar.js"></script>
     <script src="footer.js"></script>
+<style>
+.w3-quarter img{margin-bottom: -6px; cursor: pointer}
+.w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+</style>
+
   </head>
 
   <body>
@@ -29,39 +34,53 @@
       </div>
     </header>
 
-  <!-- Project Section -->
-  <div class="w3-container w3-padding-32" id="weddingsound">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Sound Systems</h3>
-    <p>Don't leave a crucial part of your wedding planning to chance.  Get quality sound systems for your event so that every word and every note will come through crystal clear.
-    </p>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+  
+  <!-- Photo grid -->
+  <div class="w3-row w3-grayscale-min">
+    <div class="w3-third">
+      <img src="../images/shoes.png" style="width:100%" onclick="onClick(this)" alt="Wedding Shoes">
+      <img src="../images/weddingdress.png" style="width:100%" onclick="onClick(this)" alt="Wedding Dress">
+   </div>
+
+    <div class="w3-third">
+      <img src="../images/roses.png" style="width:100%" onclick="onClick(this)" alt="Wedding Flowers">
+      <img src="../images/chairs.png" style="width:100%" onclick="onClick(this)" alt="Chairs">
+   </div>
+
+    <div class="w3-third">
+      <img src="../images/accessories.png" style="width:100%" onclick="onClick(this)" alt="Bride Accessories">
+      <img src="../images/fatherbridedance.png" style="width:100%" onclick="onClick(this)" alt="Sound Equipment">
+   </div>
+
+    
   </div>
 
-   
-  <div class="w3-row-padding">
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">Keyboards</div>
-        <img src="../images/weddingkeyboard.png" alt="House" style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">Microphones</div>
-        <img src="../images/weddingmicrophones.png" alt="House" style="width:100%">
-      </div>
-    </div>
-    <div class="w3-col l3 m6 w3-margin-bottom">
-      <div class="w3-display-container">
-        <div class="w3-display-topleft w3-black w3-padding">Speakers</div>
-        <img src="../images/weddingspeaker.png" alt="House" style="width:100%">
-      </div>
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
+    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+      <img id="img01" class="w3-image">
+      <p id="caption"></p>
     </div>
   </div>
-    
-  <div class="w3-container w3-padding-32" id="weddingsetup">
-    <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Setup and Takedown</h3>
-    <p>Take the hassle out of your wedding by allowing professionals to come ahead of time and set up and test all of your sound equipment.  Then these same professionals can break everything down for you so that all you have to focus on is each other.</p>
-  </div>
+
+  
+  
+<!-- End page content -->
+</div>
+
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+</script>
+
     
     <hr>
     <!-- Footer -->

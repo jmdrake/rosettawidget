@@ -1,7 +1,9 @@
-var db = new PouchDB("https://visionpartners.cloudant.com/jaminventory");
+var inventory = new PouchDB("inventory");
+
+var inventoryremote = new PouchDB("https://visionpartners.cloudant.com/jaminventory");
 
 function getCategoryItems(category, callback){
-    db.find({
+    inventory.find({
         selector: {
             Category : encodeURIComponent(category)
         }
@@ -11,7 +13,7 @@ function getCategoryItems(category, callback){
 }
 
 function getItem(itemname, callback){
-    db.get(encodeURIComponent(itemname)).then(function(doc){
+    inventory.get(encodeURIComponent(itemname)).then(function(doc){
         callback(doc);
     }).catch(function(err){console.log(err)});
 }
