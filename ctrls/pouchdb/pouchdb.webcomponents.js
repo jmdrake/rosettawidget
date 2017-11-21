@@ -1,4 +1,4 @@
-var jwc = new PouchDB("https://visionpartners.cloudant.com/jamwebcomponents");
+var jwc = new PouchDB("https://wakedidededgaidscendessu@cc0ed739c9ac6696c232122f99d1a193d5e308e6:visionpartners.cloudant.com/jamwebcomponents");
 
 function getComponentList(type, callback){
     jwc.find({
