@@ -17,7 +17,7 @@ $(document).ready(function () {
 			$(".component").each(function(){
 				doc = div2json($(this), slides[0]);
 				if(doc._id==undefined) {
-					doc._id=Date.now();
+					doc._id=Date.now().toString();
 					insertComponent(doc, function(res){
 						console.log(res);
 					});
