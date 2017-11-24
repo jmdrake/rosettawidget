@@ -9,7 +9,8 @@ $(document).ready(function () {
 		var slidetemplate = cloneDiv($("#tmplSlide"));
 		$("#slidelist").html("");
 		populateDivList($("#slidelist"), slides, slidetemplate, { "imagepath": "../images/", "linkpath":"" });
-		$(".component").attr("contenteditable", true);
+		// $(".component").attr("contenteditable", true);
+		$(".component").append("<button>Edit</button>");
 	});
 	
 	$("#saveedits").click(
