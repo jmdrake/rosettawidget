@@ -2,6 +2,8 @@ function json2div(div, record, options) {
 	if(options != undefined) {
 	    var imagepath = options["imagepath"];
 		var linkpath = options["linkpath"];
+		if(linkpath==undefined) linkpath = "";
+		if(imagepath==undefined) imagepath = "";
 	}
     for(var key in record) {
         element = div.find("#" + key);
