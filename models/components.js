@@ -1,0 +1,1 @@
+var slidemodel = { "_id":"", "type":"slide", "bannerimage": "", "title": "", "text": "", "link": "" };

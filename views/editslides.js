@@ -9,13 +9,14 @@ $(document).ready(function () {
 		var slidetemplate = cloneDiv($("#tmplSlide"));
 		$("#slidelist").html("");
 		populateDivList($("#slidelist"), slides, slidetemplate, { "imagepath": "../images/", "linkpath":"" });
-		$(".component").attr("contenteditable", true);
+		// $(".component").attr("contenteditable", true);
+		$(".component").append("<button>Edit</button>");
 	});
 	
 	$("#saveedits").click(
 		function(){
 			$(".component").each(function(){
-				doc = div2json($(this), slides[0]);
+				doc = div2json($(this), slidemodel);
 				if(doc._id==undefined) {
 					doc._id=Date.now().toString();
 					insertComponent(doc, function(res){
