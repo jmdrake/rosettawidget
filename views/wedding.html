@@ -12,15 +12,12 @@
     <script src="../ctrls/users.js"></script>
     <script src="navbar.js"></script>
     <script src="footer.js"></script>
-<style>
-.w3-quarter img{margin-bottom: -6px; cursor: pointer}
-.w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
-</style>
-
+    <style>
+      .w3-quarter img{margin-bottom: -6px; cursor: pointer}
+      .w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+    </style>
   </head>
-
   <body>
-
     <!-- Navbar -->
     <div id="navbar"></div>
   
@@ -33,57 +30,56 @@
         <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>Wedding Services</b></span></h1>
       </div>
     </header>
-
-<!-- !PAGE CONTENT! -->
-<div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
   
-  <!-- Photo grid -->
-  <div class="w3-row w3-grayscale-min">
-    <div class="w3-third">
-      <img src="../images/shoes.png" style="width:100%" onclick="onClick(this)" alt="Wedding Shoes">
-      <img src="../images/weddingdress.png" style="width:100%" onclick="onClick(this)" alt="Wedding Dress">
-   </div>
-
-    <div class="w3-third">
-      <img src="../images/roses.png" style="width:100%" onclick="onClick(this)" alt="Wedding Flowers">
-      <img src="../images/chairs.png" style="width:100%" onclick="onClick(this)" alt="Chairs">
-   </div>
-
-    <div class="w3-third">
-      <img src="../images/accessories.png" style="width:100%" onclick="onClick(this)" alt="Bride Accessories">
-      <img src="../images/fatherbridedance.png" style="width:100%" onclick="onClick(this)" alt="Sound Equipment">
-   </div>
-
-    
-  </div>
-
-  <!-- Modal for full size images on click-->
-  <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
-    <span class="w3-button w3-black w3-xlarge w3-display-topright">×</span>
-    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-      <img id="img01" class="w3-image">
-      <p id="caption"></p>
+    <!-- !PAGE CONTENT! -->
+    <div id="cards" class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+      <div class="w3-card-4 w3-third w3-padding">
+      	<a id="link" href="#">
+    	    <img src="../images/shoes.png" id="image" style="width:100%">
+    	    <div id="text" class="w3-container w3-center">Shoes
+    	    </div>
+        </a>
+      </div>
+      
+      <div class="w3-card-4">
+      	<a id="link" href="#">
+    	    <img src="../images/roses.png" id="image" style="width:100%">
+    	    <div id="text" class="w3-container w3-center">Flowers
+    	    </div>
+        </a>
+      </div>
+      
+      <div class="w3-card-4">
+      	<a id="link" href="#">
+    	    <img src="../images/chairs.png" id="image" style="width:100%">
+    	    <div id="text" class="w3-container w3-center">Tables and chairs
+    	    </div>
+        </a>
+      </div>      
+      <div class="w3-card-4 w3-third w3-padding">
+      	<a id="link" href="#">
+    	    <img src="../images/fatherbridedance.png" id="image" style="width:100%">
+    	    <div id="text" class="w3-container w3-center">Sound equipment and staging
+    	    </div>
+        </a>
+      </div>
+      
+      <div class="w3-card-4">
+      	<a id="link" href="#">
+    	    <img src="../images/weddingdj.png" id="image" style="width:100%">
+    	    <div id="text" class="w3-container w3-center">Entertainment
+    	    </div>
+        </a>
+      </div>
+      
+      <div class="w3-card-4">
+      	<a id="link" href="#">
+    	    <img src="../images/weddingdress.png" id="image" style="width:100%">
+    	    <div id="text" class="w3-container w3-center">Wedding dresses and tuxedos
+    	    </div>
+        </a>
+      </div>      
     </div>
-  </div>
-
-  
-  
-<!-- End page content -->
-</div>
-
-<script>
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
-}
-</script>
-
     
-    <hr>
-    <!-- Footer -->
-    <div id="footer"></div>
-</body>
+  </body>
 </html>
