@@ -30,3 +30,11 @@ function populateList(list, data, key){
         list.append(newLI);
     }
 }
+
+function populateComponents(div, data, template, options){
+   var newDiv;
+   for (var i = 0; i < data.length; i++) {
+		newDiv = cloneDiv(template, JSON.parse(data[i]), options);
+		div.append(newDiv);
+	}
+}
