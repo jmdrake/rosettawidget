@@ -12,7 +12,7 @@ require_once "utils/mark_sql_get.php";
 
 $conn = open_connection();
 $sql = mark_sql_get('
-SELECT json
+SELECT id, json
 FROM components
 WHERE template=[template] AND page=[page]');
 // echo $sql;
