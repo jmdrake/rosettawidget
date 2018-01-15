@@ -3,7 +3,7 @@ function getComponents(template, page, callback){
 				var json = [];
 			  var arr = JSON.parse(results.trim());
 			  for(var i = 0; i < arr.length; i++) {
-					json[i] = JSON.parse(decodeURI(results.json));
+					json[i] = JSON.parse(decodeURI(arr[i].json));
 				}
         callback (json);
     })
