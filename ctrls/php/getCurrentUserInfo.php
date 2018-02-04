@@ -12,7 +12,7 @@ require_once "utils/mark_sql_get.php";
 
 $conn = open_connection();
 $sql = mark_sql_get('
-SELECT fullname, phone, email, roles.role
+SELECT fullname, phone, email, roles.role, menu
 FROM users
 INNER JOIN roles ON users.role = roles.id
 WHERE users.id = [currentuser]');
