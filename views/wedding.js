@@ -6,11 +6,34 @@ $(document).ready(function () {
 				populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../images/weddings/"});
 			});        
 		});		
+	} else {
+	    $("#cardtemplate").load("./components/card.html", function(){
+		    getComponents("card", "wedding", function(results){
+			    populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../images/weddings/"});
+		    });        
+	    });
 	}
-	$("#cardtemplate").load("./components/card.html", function(){
-		getComponents("card", "wedding", function(results){
-			populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../images/weddings/"});
-		});        
-	});
 });
 
+function btnSave(e){
+    var component = e.parent().parent();
+    var componentid = component.find("#_id").val();
+    var data = div2json(component, cardmodel, {"imagepath":"../images/weddings/"});
+    console.log(data);
+    
+    updateComponent(data, function(results){
+        console.log(results);
+    });
+}
+
+function btnDelete(e){
+    var component = e.parent().parent();
+    var componentid = component.find("#_id").val();
+    console.log("Deleting " + componentid);
+    /*
+    deleteComponent(componentid, function(results){
+        console.log(results);
+    });
+    */
+    component.hide();
+}

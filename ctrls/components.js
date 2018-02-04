@@ -9,3 +9,12 @@ function getComponents(template, page, callback){
 		callback (json);
 	})
 }
+
+function updateComponent(data, callback){
+    var id = data["_id"];        
+    delete (data["_id"]);
+    var jsonstring = JSON.stringify(data);
+    $.post("../ctrls/php/updateComponent.php", {"json": jsonstring, "id": id}, function(results){
+		callback (results);
+	})
+}

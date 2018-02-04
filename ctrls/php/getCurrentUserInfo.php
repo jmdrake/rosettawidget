@@ -12,9 +12,9 @@ require_once "utils/mark_sql_get.php";
 
 $conn = open_connection();
 $sql = mark_sql_get('
-SELECT fullname, phone, email, role, menu
+SELECT fullname, phone, email, roles.role
 FROM users
-INNER JOIN roles ON roleid = roles.id
+INNER JOIN roles ON users.role = roles.id
 WHERE users.id = [currentuser]');
 echo querytojson($sql, $conn);
 // echo $sql;

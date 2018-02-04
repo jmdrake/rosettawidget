@@ -1,2 +1,2 @@
-var slidemodel = { "_id":"", "type":"slide", "bannerimage": "", "title": "", "text": "", "link": "" };
-var cardmodel = { "_id":"", "type":"card", "image": "", "text": "", "link": "" };
+var slidemodel = { "_id":"", "bannerimage": "", "title": "", "text": "", "link": "" };
+var cardmodel = { "_id":"", "image": "", "text": "", "link": "" };
