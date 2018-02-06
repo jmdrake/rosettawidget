@@ -1,6 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "visionp3_sql";
-$password = "acespade";
-$database = "visionp3_ajam";
+$servername = "db4free.net";
+$username = "jamuser";
+$password = "ekard674!";
+$database = "jammusiccenter";
 ?>

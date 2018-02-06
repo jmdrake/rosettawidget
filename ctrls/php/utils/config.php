@@ -1,7 +1,7 @@
 <?php
 // $currentconfig = file_get_contents('configure.inc');                
-$currentconfig=file_get_contents('./utils/configure.inc');      
-// $currentconfig = "config_heroku.php";
+// $currentconfig=file_get_contents('./utils/configure.inc');      
+$currentconfig = "config_heroku.php";
 require $currentconfig;
 // require "config_heroku.php";
 
