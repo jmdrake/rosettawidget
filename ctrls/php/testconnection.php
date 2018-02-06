@@ -1,5 +1,5 @@
 <?php
-require_once "config.php";
+require_once "utils/config.php";
 
 $conn = open_connection();
 if ($conn->connect_error) {
