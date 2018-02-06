@@ -2,6 +2,7 @@ var http = require('http');
 var url = require("url");
 var fs = require("fs");
 var PouchDB = require("pouchdb");
+var path = require("path");
 
 var inventory = new PouchDB("inventory");
 PouchDB.plugin(require('pouchdb-find'));
@@ -49,6 +50,12 @@ var server = http.createServer(function (req, res) {
         console.log("getCurrentUser");
     } else {
         let pathname = `.${parsedUrl.pathname}`;
+        // if is a directory, then look for index.html
+        if (fs.statSync(pathname).isDirectory()) {
+          pathname += '/index.html';
+        }
+        console.log("Pathname : " + pathname);
+
         // maps file extention to MIME types
         const mimeType = {
         '.ico': 'image/x-icon',
@@ -73,10 +80,6 @@ var server = http.createServer(function (req, res) {
           res.end(`File ${pathname} not found!`);
           return;
         }
-        // if is a directory, then look for index.html
-        if (fs.statSync(pathname).isDirectory()) {
-          pathname += '/index.html';
-        }
         // read file from file system
         fs.readFile(pathname, function(err, data){
           if(err){
@@ -84,7 +87,6 @@ var server = http.createServer(function (req, res) {
             res.end(`Error getting the file: ${err}.`);
           } else {
             // based on the URL path, extract the file extention. e.g. .js, .doc, ...
-            console.log(pathname);
             const ext = path.parse(pathname).ext;
             // if the file is found, set Content-type and send data
             res.setHeader('Content-type', mimeType[ext] || 'text/plain' );

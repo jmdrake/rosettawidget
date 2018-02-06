@@ -6,11 +6,12 @@ $(document).ready(function () {
 				populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../images/weddings/"});
 			});        
 		});		
+	} else {
+		$("#cardtemplate").load("./components/card.html", function(){
+			getComponents("card", "wedding", function(results){
+				populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../images/weddings/"});
+			});        
+		});
 	}
-	$("#cardtemplate").load("./components/card.html", function(){
-		getComponents("card", "wedding", function(results){
-			populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../images/weddings/"});
-		});        
-	});
 });
 
