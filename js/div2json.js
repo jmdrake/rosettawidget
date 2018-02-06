@@ -6,21 +6,30 @@ function div2json(div, model, options) {
 	var object = {};
     for(var key in model) {
         element = div.find("#" + key);
-        if(element.get(0) != undefined)            
+        if(element.get(0) != undefined) {
             switch(element.get(0).tagName){
                 case "IMG":
                     value = element.attr("src");
+                    if (imagepath) {
+                        value = value.split(imagepath)[1];
+                    }
                     break;
                 case "INPUT":
                     value = element.val();
                     break;
                 case "A":
                     value = element.attr("href" );
+                    if (linkpath) {
+                        value = value.split(linkpath)[1];
+                    }
                     break;
                 default:
                     value = element.html();
             }                            
-        object[key] = value;
+            object[key] = value;            
+        } else {
+            object[key] = model[key];
+        }         
     }
     return object;
 }

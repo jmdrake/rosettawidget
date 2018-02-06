@@ -1,12 +1,12 @@
 <div class="w3-card-4 w3-third w3-padding">
     <input type="hidden" id="_id"/>
-    <a id="link" href="#">
-        <img id="image" src="../images/noimage.png" alt="" >
+    <a id="link" href="#" contenteditable="true">
+        <img id="image" src="../images/noimage.png" alt="" width="600px" height="600px">
         <div class="w3-container w3-center"><p><span id="text">Text</span></p></div>
+        <input type="file" id="newimage"/><br/>
     </a>
-    <div>
-        <input type="file" id="newimage"/>
-        <p><button class="w3-btn">Save<i class="w3-margin-left fa fa-pencil"></i></button>
-        <p><button class="w3-btn">Delete<i class="w3-margin-left fa fa-trash"></i></button>
+    <div>        
+        <button class="w3-btn" onclick="btnSave($(this));">Save<i class="w3-margin-left fa fa-pencil"></i></button>
+        <button class="w3-btn" onclick="btnDelete($(this));">Delete<i class="w3-margin-left fa fa-trash"></i></button>
     </div>
 </div>
