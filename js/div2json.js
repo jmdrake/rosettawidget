@@ -7,7 +7,7 @@ function div2json(div, model, options) {
     for(var key in model) {
         element = div.find("#" + key);
         if(element.get(0) != undefined) {
-            switch(element.get(0).tagName){
+            switch(element.get(0).tagName.toUpperCase()){
                 case "IMG":
                     value = element.attr("src");
                     if (imagepath) {
