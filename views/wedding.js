@@ -3,13 +3,13 @@ $(document).ready(function () {
 	if(url.match(/\?edit/)){
 		$("#cardtemplate").load("./components/editcard.html", function(){
 			getComponents("card", "wedding", function(results){
-				populateDivList($("#cards"), results, $("#cardcomponent"), {"imagepath":"../images/weddings/"});
+				populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../images/weddings/"});
 			});        
 		});		
 	} else {
 	    $("#cardtemplate").load("./components/card.html", function(){
 		    getComponents("card", "wedding", function(results){
-			    populateDivList($("#cards"), results, $("#cardcomponent"), {"imagepath":"../images/weddings/"});
+			    populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../images/weddings/"});
 		    });        
 	    });
 	}
