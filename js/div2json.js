@@ -10,7 +10,7 @@ function div2json(div, model, options) {
             switch(element.get(0).tagName.toUpperCase()){
                 case "IMG":
                     value = element.attr("src");
-                    if (imagepath) {
+                    if (imagepath && value.split(imagepath)[1]) {
                         value = value.split(imagepath)[1];
                     }
                     break;
