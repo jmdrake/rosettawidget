@@ -15,22 +15,19 @@ $(document).ready(function () {
 	}
 });
 
-function readURL(input, previewimg) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            previewimg.attr('src', e.target.result);
-            console.log(previewimg);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-
 function btnSave(e){
     var component = e.parent().parent();
     var componentid = component.find("#_id").val();
     var data = div2json(component, cardmodel, {"imagepath":"../images/weddings/"});
+		var input = component.find("#userImage");
+		if(input.prop("files")[0]){
+			var ext = input.prop("files")[0].name.split(".")[1];	
+			var name = "compnent" + componentid + "." + ext;
+			data["image"] = name;
+			uploadFile(input, name, function(res){
+				console.log(res);
+			});
+		}
     console.log(data);
     
     updateComponent(data, function(results){
