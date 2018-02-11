@@ -36,8 +36,11 @@ if(in_array("admin", $permissions)) {
 			$upLoadOk = 0;
 	}
 	if($upLoadOk == 1) {
-			move_uploaded_file($_FILES['file']['tmp_name'], '../uploads/' . $filename);
-			echo('Successful:uploads/' . $filename);
+			if(move_uploaded_file($_FILES['file']['tmp_name'], '../../uploads/' . $filename)) {
+					echo('Successful:uploads/' . $filename);
+			} else {
+					echo('Error uploading file');
+			}			
 	}
 } else {
     echo '{"results":"permission denied"}';

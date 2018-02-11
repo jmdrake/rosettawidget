@@ -3,13 +3,13 @@ $(document).ready(function () {
 	if(url.match(/\?edit/)){
 		$("#cardtemplate").load("./components/editcard.html", function(){
 			getComponents("card", "wedding", function(results){
-				populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../images/weddings/"});
+				populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../uploads/"});
 			});        
 		});		
 	} else {
 	    $("#cardtemplate").load("./components/card.html", function(){
 		    getComponents("card", "wedding", function(results){
-			    populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../images/weddings/"});
+			    populateDivList($("#cards"), results, $("#cardtemplate"), {"imagepath":"../uploads/"});
 		    });        
 	    });
 	}
@@ -18,11 +18,11 @@ $(document).ready(function () {
 function btnSave(e){
     var component = e.parent().parent();
     var componentid = component.find("#_id").val();
-    var data = div2json(component, cardmodel, {"imagepath":"../images/weddings/"});
+    var data = div2json(component, cardmodel, {"imagepath":"../uploads/"});
 	var input = component.find("#userImage");
 	if(input.prop("files")[0]){
 		var ext = input.prop("files")[0].name.split(".")[1];	
-		var name = "compnent" + componentid + "." + ext;
+		var name = "component" + componentid + "." + ext;
 		data["image"] = name;
 		uploadFile(input, name, function(res){
 			console.log(res);
