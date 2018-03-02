@@ -1,0 +1,107 @@
+var http = require('http');
+var url = require("url");
+var fs = require("fs");
+var PouchDB = require("pouchdb");
+var path = require("path");
+
+var inventory = new PouchDB("inventory");
+PouchDB.plugin(require('pouchdb-find'));
+var inventoryremote = new PouchDB("https://visionpartners.cloudant.com/jaminventory");
+
+var app_port = process.env.app_port || 8080;
+var app_host = process.env.app_host || '127.0.0.1';
+
+var mysql = require('mysql');
+
+var con = mysql.createConnection({
+  host: process.env.IP,
+  user: process.env.C9_USER,
+  password: "",
+  database: "c9",
+  port: "3306"
+});
+
+
+var server = http.createServer(function (req, res) {
+    var parsedUrl = url.parse(req.url, true);
+    res.setHeader('Access-Control-Allow-Origin', 'https://preview.c9users.io');
+
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    
+    if(parsedUrl.path.search("getCategoryItems") == 1){
+        console.log("Getting items of category : " + parsedUrl.query.category);
+    } else if(parsedUrl.path.search("getItem") == 1) {
+        console.log("Getting item  : " + parsedUrl.query.item);
+    } else if(parsedUrl.path.search("registerUser")==1) {
+        console.log("Register  ");
+    } else if(parsedUrl.path.search("loginUser")==1) {
+        console.log("login  ");
+    } else if(parsedUrl.path.search("logoutUser")==1) {
+        console.log("logout  ");
+    } else if(parsedUrl.path.search("getCurrentUser")==1) {
+        console.log("getCurrentUser");
+    } else {
+      var pathname = parsedUrl.path;
+      var patharray = pathname.split("/");
+      if(patharray[0]=="" && patharray.length == 2) {
+        pathname = "/views/" + pathname;
+        console.log("Default dir");
+      }      
+      pathname = "." + pathname;
+      if (fs.statSync(pathname).isDirectory()) {
+          pathname += 'index.html';
+      }
+      
+      console.log(pathname);
+      console.log(parsedUrl.path);
+      const mimeType = {
+        '.ico': 'image/x-icon',
+        '.html': 'text/html',
+        '.js': 'text/javascript',
+        '.json': 'application/json',
+        '.css': 'text/css',
+        '.png': 'image/png',
+        '.jpg': 'image/jpeg',
+        '.wav': 'audio/wav',
+        '.mp3': 'audio/mpeg',
+        '.svg': 'image/svg+xml',
+        '.pdf': 'application/pdf',
+        '.doc': 'application/msword',
+        '.eot': 'appliaction/vnd.ms-fontobject',
+        '.ttf': 'aplication/font-sfnt'
+      };
+      fs.exists(pathname, function (exist) {
+        if(!exist) {
+          // if the file is not found, return 404
+          res.statusCode = 404;
+          res.end(`File ${pathname} not found!`);
+          return;
+        } else {
+          fs.readFile(pathname, function(err, data){
+            if(err){
+              res.statusCode = 500;
+              res.end(`Error getting the file: ${err}.`);
+            } else {
+              // based on the URL path, extract the file extention. e.g. .js, .doc, ...
+              console.log("Loading file");
+              const ext = path.parse(pathname).ext;
+              // if the file is found, set Content-type and send data
+              res.setHeader('Content-type', mimeType[ext] || 'text/plain' );
+              res.end(data);
+            }          
+          });
+        }
+      });
+    }
+});
+
+server.listen(app_port);
+console.log('Web server running at http://' + app_host + ':' + app_port);

@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+        <script>
+        function uploadFile(input, filename, callback) {
+            var file_data = $(input).prop('files')[0];
+            var form_data = new FormData();                  
+            form_data.append('file', file_data);
+            form_data.append('name', filename);
+            $.ajax({
+                url: '/upload', // point to server-side PHP script 
+                dataType: 'text',  // what to expect back from the PHP script, if anything
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: form_data,                         
+                type: 'post',
+                success: function(php_script_response){
+                    callback(php_script_response); // display response from the PHP script, if any
+                }
+             });    
+        }
+
+        function btnUpload(e){
+            var component = e.parent().parent();
+            var componentid = component.find("#_id").val();
+        	var input = component.find("#userImage");
+        	if(input.prop("files")[0]){
+        		var ext = input.prop("files")[0].name.split(".")[1];	
+        		var name = "component" + componentid + "." + ext;
+        		uploadFile(input, name, function(res){
+        			console.log(res);
+        		});
+        	}
+        }            
+        
+        function readURL(input, previewimg) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    previewimg.attr('src', e.target.result);
+                    console.log(previewimg);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }        
+        </script>
+    </head>
+    <body>
+        <div class="w3-card-4 w3-third w3-padding">
+            <input type="hidden" id="_id" value="378342"/>
+            <input type="hidden" id="template"/>
+            <input type="hidden" id="page"/>
+            <img id="image" src="../images/noimage.png" alt="image" width="100%">
+            <div class="w3-container w3-center"><p><span id="text" contenteditable="true">Text</span></p></div>
+        		<input name="userImage" id="userImage" type="file" class="inputFile" onChange="readURL(this, $(this).parent().parent().find('#image'))" />
+            <div>        
+                <button class="w3-btn" onclick="btnUpload($(this));">Save<i class="w3-margin-left fa fa-pencil"></i></button>
+            </div>
+        </div>
+    </body>
+</html>

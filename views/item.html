@@ -24,13 +24,19 @@
   
     <!-- Page content -->
     <div class="w3-content" id="divProduct">
-      <i class="fa fa-pencil w3-hide" id="edit"></i>
+      <i class="fa fa-pencil w3-hide" id="edit">Edit</i>
       <div class="w3-row productinfo" id="divProductHeader">
         <p><h3><span id="Mfg"></span>&nbsp;<span id="Sku"></span></h3></p>
         <p><span id="Description"></span></p>
         <p><span id="LongDescription"></span></p>
         <p><span id="WeeklyRental"></span>/Week <span id="MonthlyRental"></span>/Month</p>
-      </div><button class="w3-hide w3-button w3-white w3-border w3-border-blue" id="reserve">Reserve</button>
+      </div>
+      <button class="w3-hide w3-button w3-white w3-border w3-border-blue" id="showReserve">Reserve</button>
+      <form class="w3-hide" id="frmReserve">
+        Reserve Starting<input type="date" id="reserveDate"/><br>
+        Reserve Ending<input type="date" id="reserveDate"/><br>
+        <button class="w3-button w3-white w3-border w3-border-blue" id="submitReservation">Submit Reservation</button>
+      </form>
       <div class="w3-row">
         <div class="w3-col m5 l5" id="divProductImage">
           <img src="../images/noimage.jpg" id="Image"><img>

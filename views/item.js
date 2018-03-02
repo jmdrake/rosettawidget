@@ -19,13 +19,21 @@ $(document).ready(function () {
           $("#usermenu").html(userinfo["menu"]);
           var role = userinfo["role"];
           if(role=="user" || role=="admin") {
-            $("#reserve").removeClass("w3-hide");
+            $("#showReserve").removeClass("w3-hide");
           }
           if(role=="admin") {
             $("#edit").removeClass("w3-hide");
           }
         }
       });
+      $("#showReserve").click(function(){
+        $("#frmReserve").removeClass("w3-hide");
+      });
+      $("#submitReservation").click(function(){
+        addReservation(inputs2json($("#frmReserve")), function(results){
+          console.log(results);
+        })
+      })
     } 
 });
 

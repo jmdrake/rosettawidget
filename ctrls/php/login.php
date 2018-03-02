@@ -19,7 +19,7 @@ if($result) {
     $jamuser = $rs["id"];    
     if($jamuser != "") {
         set_jamuser($jamuser);
-        echo "Current user: " . $jamuser . " : " . $_SESSION["jamuser"] . " : " . get_jamuser();
+        echo "Okay";
     } else {
         echo "Error : username/email - password combination not found. " . $sql;
     }      

@@ -1,99 +1,147 @@
-var http = require('http');
-var url = require("url");
-var fs = require("fs");
-var PouchDB = require("pouchdb");
+var express = require('express');
+var app = express();
+var util = require('util');
+ 
+var formidable = require('formidable');
 
-var inventory = new PouchDB("inventory");
-PouchDB.plugin(require('pouchdb-find'));
-var inventoryremote = new PouchDB("https://visionpartners.cloudant.com/jaminventory");
+var session = require('client-sessions');
 
-var app_port = process.env.app_port || 8080;
-var app_host = process.env.app_host || '127.0.0.1';
+var fs = require('fs');
 
-var mysql = require('mysql');
+app.use(session({
+  cookieName: 'session',
+  secret: 'random_string_goes_here',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+}));
 
-var con = mysql.createConnection({
-  host: process.env.IP,
-  user: process.env.C9_USER,
-  password: "",
-  database: "c9",
-  port: "3306"
+var inventory = require("./inventory");
+var users = require("./users");
+var components = require("./components");
+
+var bodyParser = require('body-parser')
+
+// create application/json parser
+var jsonParser = bodyParser.json()
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+app.use(express.static('../..'));
+
+app.get('/getCurrentUserInfo', function(req, res){
+  users.getCurrentUserInfo(req.session.currentUser, function(doc){
+    res.send(doc);
+  })
 });
 
-
-var server = http.createServer(function (req, res) {
-    var parsedUrl = url.parse(req.url, true);
-    res.setHeader('Access-Control-Allow-Origin', 'https://preview.c9users.io');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    
-    if(parsedUrl.path.search("getCategoryItems") == 1){
-        console.log("Getting items of category : " + parsedUrl.query.category);
-    } else if(parsedUrl.path.search("getItem") == 1) {
-        console.log("Getting item  : " + parsedUrl.query.item);
-    } else if(parsedUrl.path.search("register")==1) {
-        console.log("Register  ");
-    } else if(parsedUrl.path.search("login")==1) {
-        console.log("login  ");
-    } else if(parsedUrl.path.search("logout")==1) {
-        console.log("logout  ");
-    } else if(parsedUrl.path.search("getCurrentUser")==1) {
-        console.log("getCurrentUser");
-    } else {
-        let pathname = `.${parsedUrl.pathname}`;
-        // maps file extention to MIME types
-        const mimeType = {
-        '.ico': 'image/x-icon',
-        '.html': 'text/html',
-        '.js': 'text/javascript',
-        '.json': 'application/json',
-        '.css': 'text/css',
-        '.png': 'image/png',
-        '.jpg': 'image/jpeg',
-        '.wav': 'audio/wav',
-        '.mp3': 'audio/mpeg',
-        '.svg': 'image/svg+xml',
-        '.pdf': 'application/pdf',
-        '.doc': 'application/msword',
-        '.eot': 'appliaction/vnd.ms-fontobject',
-        '.ttf': 'aplication/font-sfnt'
-        };
-        fs.exists(pathname, function (exist) {
-        if(!exist) {
-          // if the file is not found, return 404
-          res.statusCode = 404;
-          res.end(`File ${pathname} not found!`);
-          return;
-        }
-        // if is a directory, then look for index.html
-        if (fs.statSync(pathname).isDirectory()) {
-          pathname += '/index.html';
-        }
-        // read file from file system
-        fs.readFile(pathname, function(err, data){
-          if(err){
-            res.statusCode = 500;
-            res.end(`Error getting the file: ${err}.`);
-          } else {
-            // based on the URL path, extract the file extention. e.g. .js, .doc, ...
-            console.log(pathname);
-            const ext = path.parse(pathname).ext;
-            // if the file is found, set Content-type and send data
-            res.setHeader('Content-type', mimeType[ext] || 'text/plain' );
-            res.end(data);
-          }
-        });
-        });        
+app.post('/loginUser', urlencodedParser, function (req, res) {
+  console.log("Current User in login : " + req.session.currentUser);
+  users.loginUser(req.body, function(doc){
+    if(doc["password"]) {
+      delete doc.password;
+      req.session.currentUser = doc["_id"];
     }
+    res.end("Okay");
+    // console.log("Setting Current User : " + req.session.currentUser);
+  });
 });
 
-server.listen(app_port);
-console.log('Web server running at http://' + app_host + ':' + app_port);
+app.post('/fubar', urlencodedParser, function (req, res) {
+  console.log("Current User in fubar : " + req.session.currentUser);
+  users.loginUser(req.body, function(doc){
+    if(doc["password"]) {
+      delete doc.password;
+      req.session.currentUser = doc["_id"];
+    }
+    res.end(JSON.stringify(doc));
+  });
+});
+
+app.get('/logoutUser', function (req, res) {
+  req.session.forget('currentUser');
+  req.send({"ok":"true"});
+});
+
+app.get('/getCategoryItems', function (req, res) {
+  console.log("Getting items of category : " + req.query.category);
+  res.setHeader('Content-type', 'text/plain' );
+  inventory.getCategoryItems(req.query.category, function(results){
+    res.end(JSON.stringify(results));
+  })   
+});
+
+app.get('/getItem', function (req, res) {
+  console.log("Getting item  : " + req.query.item);
+  res.setHeader('Content-type', 'text/plain' );
+  inventory.getItem(req.query.item, function(results){
+    res.end(JSON.stringify(results));
+  })
+});
+
+
+// POST /login gets urlencoded bodies
+app.post('/registerUser', urlencodedParser, function (req, res) {
+  if (!req.body) return res.sendStatus(400);
+  users.registerUser(req.body, function(results){
+    console.log(results);
+    if(results["ok"]) {
+      req.session.set('currentUser', req.body.username);
+      res.send(JSON.stringify(results));
+    } else {
+      console.log(results.message);
+      res.send(JSON.stringify(results.message));
+    }
+  })
+});
+
+app.get('/getCurrentUser', function(req, res){
+  console.log("Current User : " + req.session.currentUser);
+  res.end(req.session.currentUser);
+});
+
+app.get('/getCurrentUserInfo', function(req, res){
+  users.getCurrentUserInfo(req.session.get("currentUser"), function(doc){
+    req.end(doc);
+  })
+});
+
+app.get("/getComponents", function(req, res){
+  components.getComponents(req.query.template, req.query.page, function(results){
+    res.end(JSON.stringify(results));
+  })
+});
+
+
+app.post('/upload', urlencodedParser, function (req, res) {
+  if (!req.body) return res.sendStatus(400);
+    var form = new formidable.IncomingForm();
+    console.log("Uploading file");
+    form.parse(req, function(err, fields, files) {
+      res.writeHead(200, {'content-type': 'text/plain'});
+      res.write('received upload:\n\n');
+      var newpath = "../../uploads/" + fields.name;
+      var oldpath = files.file.path;
+      fs.rename(oldpath, newpath, function (err) {
+        if (err) throw err;
+        res.write('File uploaded and moved!');
+        res.end();
+        console.log('File uploaded and moved');
+      });
+    });
+});
+
+
+app.post("/updateComponent", urlencodedParser, function(req, res){
+  if (!req.body) return res.sendStatus(400);
+  components.updateComponent(req.body, function(results){
+    res.end(JSON.stringify(results));
+  });
+});
+
+var server = app.listen(8080, function () {
+   var host = server.address().address
+   var port = server.address().port
+   
+   console.log("Example app listening at http://%s:%s", host, port)
+});
