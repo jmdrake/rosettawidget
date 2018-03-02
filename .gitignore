@@ -2,3 +2,5 @@ App_Data
 bin
 web.config
 composer.json
+ctrls/node.js/sessions
+ctrls/node.js/node_modules
